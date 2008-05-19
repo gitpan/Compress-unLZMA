@@ -242,6 +242,14 @@ int LzmaUncompressFile(char *filename, Content *pOut, char *rs)
     return 1;
   }
 
+  /* empty file: no need to uncompress data */
+  if (pOut->size == (unsigned long)0)
+  {
+    Safefree(pIn->content);
+    Safefree(pIn);
+    return 0;
+  }
+
   ret = LzmaUncompressData(pIn, pOut, properties, rs);
 
     Safefree(pIn->content);
@@ -324,7 +332,11 @@ PPCODE:
 	}
 
 	sv_setpv(errsv, "");
-	XPUSHs(sv_2mortal(newSVpvn(pContent->content, pContent->size)));
+        if (pContent->size) {
+ 		XPUSHs(sv_2mortal(newSVpvn(pContent->content, pContent->size)));
+	} else {
+		XPUSHs(sv_2mortal(newSVpvn("", pContent->size))); /* the empty string */
+        }
 	Safefree(pContent->content);
 	Safefree(pContent);
 	XSRETURN(1);

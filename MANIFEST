@@ -9,6 +9,8 @@ t/README
 t/README.lzma
 t/test.png
 t/test.png.lzma
+t/empty
+t/empty.lzma
 lib/Compress/unLZMA.pm
 lzma_sdk/License.txt
 lzma_sdk/copying.txt

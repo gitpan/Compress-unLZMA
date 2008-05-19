@@ -13,7 +13,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw(
 
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 require XSLoader;
 XSLoader::load('Compress::unLZMA', $VERSION);
@@ -48,6 +48,10 @@ sub uncompress {
 
 	if (ord(substr($properties, 0, 1)) >= (9 * 5 * 5)) {
 		return undef;
+	}
+
+	if ( $size == 0 ) { # empty file: no data to uncompress
+		return '';
 	}
 
 	$data = substr($data, 13);
@@ -119,6 +123,10 @@ at http://rt.cpan.org/ or email to bug-Compress-unLZMA\@rt.cpan.org.
 
 http://rt.cpan.org/NoAuth/Bugs.html?Dist=Compress-unLZMA is the RT queue for Compress::unLZMA.
 Please check to see if your bug has already been reported. 
+
+=head1 MAINTAINER
+
+Adriano Ferreira, ferreira@cpan.org
 
 =head1 COPYRIGHT
 

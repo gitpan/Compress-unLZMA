@@ -1,5 +1,10 @@
 Revision history for Perl extension Compress::unLZMA.
 
+0.02  2008-05-19
+        - uncompress and uncompressfile now deal correctly
+          with the uncompressed empty file (returning '',
+          not undef)
+
 0.01  2004-04-18
 	- initial version
 
