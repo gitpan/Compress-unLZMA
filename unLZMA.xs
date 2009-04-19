@@ -286,7 +286,7 @@ PPCODE:
 
 	errsv = get_sv("@", TRUE);
 
-	// Error
+	/* Error */
 	if (code)
 	{
 		sv_setpv(errsv, sz);
@@ -322,7 +322,7 @@ PPCODE:
 
 	errsv = get_sv("@", TRUE);
 
-	// Error
+	/* Error */
 	if (code)
 	{
 		sv_setpv(errsv, sz);
