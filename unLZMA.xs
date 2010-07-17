@@ -60,7 +60,7 @@ int LzmaUncompressData(Content *pIn, Content *pOut, unsigned char properties[5],
   lzmaInternalSize = (LZMA_BASE_SIZE + (LZMA_LIT_SIZE << (lc + lp)))* sizeof(CProb);
 
   #ifdef _LZMA_OUT_READ
-  lzmaInternalSize += 100;
+  lzmaInternalSize += sizeof(LzmaVarState);
   #endif
 
   New(0, pOut->content, pOut->size, char);
